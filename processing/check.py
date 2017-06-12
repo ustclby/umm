@@ -16,10 +16,11 @@ def check_hist(folder):
         with h5py.File(fn, 'r') as h5_file:
 
             labels = h5_file['label'][:, :]
-            labels= list(labels)
-            print(labels.shape)
-            new_label = np.concatenate((new_label, labels),axis = 0)
-    
+            if len(new_label) == 0 :
+                new_label = labels
+            else:
+                new_label = np.concatenate((new_label, labels),axis = 0)
+
     attr = new_label.shape[1]
     for i in range(attr):
         train_hist = np.histogram(new_label[:,i], bins=range(100))
