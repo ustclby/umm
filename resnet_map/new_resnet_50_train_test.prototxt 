@@ -2718,20 +2718,11 @@ layer {
 
 ### for kind 1
 layer {
-  name: "silence"
-  type: "Silence"
-  bottom: "label_1"
-  phase: TRAIN
-}
-
-### for kind 2
-
-layer {
-        bottom: "pool5"
-        top: "fc2"
-        name: "fc2"
-        type: "InnerProduct"
-        param {
+    bottom: "pool5"
+    top: "fc1"
+    name: "fc1"
+    type: "InnerProduct"
+    param {
         lr_mult: 1
         decay_mult: 1
     }
@@ -2739,33 +2730,80 @@ layer {
         lr_mult: 2
         decay_mult: 0
     }
-        inner_product_param {
-                num_output: 7
-                weight_filler {
+    inner_product_param {
+        num_output: 16
+        weight_filler {
             type: "msra"
         }
         bias_filler {
             type: "constant"
             value: 0
         }
+    }
+}
+
+layer {
+    bottom: "fc1"
+    bottom: "label_1"
+    top: "loss_1"
+    name: "loss_1"
+    type: "SoftmaxWithLoss"
+}
+
+layer {
+    name: "accuracy1"
+    type: "Accuracy"
+    bottom: "fc1"
+    bottom: "label_1"
+    top: "accuracy1"
+    include {
+      phase: TEST
+    }
+}
+
+
+### for kind 2
+
+layer {
+    bottom: "pool5"
+    top: "fc2"
+    name: "fc2"
+    type: "InnerProduct"
+    param {
+        lr_mult: 1
+        decay_mult: 1
+    }
+    param {
+        lr_mult: 2
+        decay_mult: 0
+    }
+    inner_product_param {
+        num_output: 7
+        weight_filler {
+            type: "msra"
         }
+        bias_filler {
+            type: "constant"
+            value: 0
+        }
+    }
 }
 
 layer {
-        bottom: "fc2"
-        bottom: "label_2"
-        top: "loss_2"
-        name: "loss_2"
-        type: "SoftmaxWithLoss"
+    bottom: "fc2"
+    bottom: "label_2"
+    top: "loss_2"
+    name: "loss_2"
+    type: "SoftmaxWithLoss"
 }
 
 layer {
-  name: "accuracy2"
-  type: "Accuracy"
-  bottom: "fc2"
-  bottom: "label_2"
-  top: "accuracy2"
-  include {
-    phase: TEST
-  }
+    name: "accuracy2"
+    type: "Accuracy"
+    bottom: "fc2"
+    bottom: "label_2"
+    top: "accuracy2"
+    include {
+      phase: TEST
+    }
 }
