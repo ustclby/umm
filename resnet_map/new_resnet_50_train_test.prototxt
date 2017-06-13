@@ -12,7 +12,7 @@ layer {
   }
   hdfshdf5_data_param {
     source: "/Sparkie/peter/Learn_UMM_new/224/Leon_OneAOI_Large/Train_h5"
-    batch_size: 48
+    batch_size: 24
     shuffle: true
     hdfs_config_dir: "/etc/hadoop"
   }
@@ -28,7 +28,7 @@ layer {
   }
   hdfshdf5_data_param {
     source: "/Sparkie/peter/Learn_UMM_new/224/Leon_OneAOI_Large/Test_h5"
-    batch_size: 16
+    batch_size: 7
     shuffle: true
     hdfs_config_dir: "/etc/hadoop"
   }
