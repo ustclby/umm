@@ -2350,8 +2350,25 @@ layer {
 		pool: AVE
 	}
 }
+## kind 1
+layer {
+        bottom: "pool5"
+        top: "fc1"
+        name: "fc1"
+        type: "InnerProduct"
+        inner_product_param {
+                num_output: 16
+        }
+}
 
+layer {
+        bottom: "fc1"
+        top: "prob1"
+        name: "prob1"
+        type: "Softmax"
+}
 
+## kind 2
 
 layer {
         bottom: "pool5"
@@ -2365,9 +2382,8 @@ layer {
 
 layer {
         bottom: "fc2"
-        top: "prob"
-        name: "prob"
+        top: "prob2"
+        name: "prob2"
         type: "Softmax"
 }
-
 
