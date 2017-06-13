@@ -13,13 +13,15 @@ def check_hist(folder):
     new_label = []
 
     for fn in file_names:
-        with h5py.File(fn, 'r') as h5_file:
-
-            labels = h5_file['label'][:, :]
-            if len(new_label) == 0 :
-                new_label = labels
-            else:
-                new_label = np.concatenate((new_label, labels),axis = 0)
+        try:
+            with h5py.File(fn, 'r') as h5_file:
+                labels = h5_file['label'][:, :]
+                if len(new_label) == 0 :
+                    new_label = labels
+                else:
+                    new_label = np.concatenate((new_label, labels),axis = 0)
+        except:
+            print(fn)
 
     attr = new_label.shape[1]
     for i in range(attr):
