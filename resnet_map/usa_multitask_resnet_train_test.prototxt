@@ -2804,11 +2804,30 @@ layer {
 
 
 ### for kind 7 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_7"
+  phase: TRAIN
+}
+
+
+
+### for kind 8 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_8"
+  phase: TRAIN
+}
+
+
+### for kind 9
 
 layer {
     bottom: "pool5"
-    top: "fc7"
-    name: "fc7"
+    top: "fc8"
+    name: "fc8"
     type: "InnerProduct"
     param {
         lr_mult: 1
@@ -2831,8 +2850,8 @@ layer {
 }
 
 layer {
-    bottom: "fc7"
-    bottom: "label_7"
+    bottom: "fc9"
+    bottom: "label_9"
     top: "loss_laneCnt"
     name: "loss_laneCnt"
     type: "SoftmaxWithLoss"
@@ -2844,8 +2863,8 @@ layer {
 layer {
     name: "accuracy_laneCnt"
     type: "Accuracy"
-    bottom: "fc7"
-    bottom: "label_7"
+    bottom: "fc9"
+    bottom: "label_9"
     top: "accuracy_laneCnt"
     AccuracyParameter {
         ignore_label = 0 
@@ -2856,22 +2875,6 @@ layer {
 }
 
 
-### for kind 8 
-layer {
-  name: "silence"
-  type: "Silence"
-  bottom: "label_8"
-  phase: TRAIN
-}
-
-
-### for kind 9
-layer {
-  name: "silence"
-  type: "Silence"
-  bottom: "label_9"
-  phase: TRAIN
-}
 ### for kind 10 
 layer {
   name: "silence"
