@@ -1,4 +1,5 @@
-net: "/home/bylu/resnet_map/new_resnet_50_train_test.prototxt"
+# net: "/home/bylu/resnet_map/new_resnet_50_train_test.prototxt"
+net: "/home/bylu/resnet_map/usa_multitask_resnet_train_test.prototxt"
 test_iter: 4000
 test_interval: 2000
 test_initialization: false

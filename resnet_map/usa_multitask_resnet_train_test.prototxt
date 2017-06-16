@@ -2856,7 +2856,7 @@ layer {
     name: "loss_laneCnt"
     type: "SoftmaxWithLoss"
     loss_param{ 
-        ignore_label = 0 
+        ignore_label: 0 
     }
 }
 
@@ -2867,7 +2867,7 @@ layer {
     bottom: "label_9"
     top: "accuracy_laneCnt"
     AccuracyParameter {
-        ignore_label = 0 
+        ignore_label: 0 
     }
     include {
       phase: TEST
@@ -2940,7 +2940,7 @@ layer {
     name: "loss_roadClass"
     type: "SoftmaxWithLoss"
     loss_param{ 
-        ignore_label = 0 
+        ignore_label: 0 
     }
 }
 
@@ -2951,7 +2951,7 @@ layer {
     bottom: "label_14"
     top: "accuracy_roadClass"
     AccuracyParameter {
-        ignore_label = 0 
+        ignore_label: 0 
     }
     include {
       phase: TEST
