@@ -2866,7 +2866,7 @@ layer {
     bottom: "fc9"
     bottom: "label_9"
     top: "accuracy_laneCnt"
-    AccuracyParameter {
+    accuracy_param {
         ignore_label: 0 
     }
     include {
@@ -2950,7 +2950,7 @@ layer {
     bottom: "fc14"
     bottom: "label_14"
     top: "accuracy_roadClass"
-    AccuracyParameter {
+    accuracy_param{
         ignore_label: 0 
     }
     include {
