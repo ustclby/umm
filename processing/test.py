@@ -19,6 +19,8 @@ net = caffe.Net(deploy, caffe_model, caffe.TEST)   # load model
 WD = r'/home/bylu/Test_h5/'
 ##WD = r'/Users/bylu/Downloads/'
 file_names = glob.glob(os.path.join(WD, '*.h5'))
+cnt = 0
+cntw = 0
 for fn in file_names:
     with h5py.File(fn, 'r') as h5_file:
         data = h5_file['data'][0:]
@@ -26,18 +28,21 @@ for fn in file_names:
         labels = list(labels)
         info = h5_file['info'][0:]
         # net.blobs['data'].reshape(len(data),3,data.shape[2],data.shape[3])
+        cnt = cnt + len(data)
         for i in range(len(data)):
             net.blobs['data'].data[...] = data[i]
             out = net.forward()
             predicts = out['prob'][0]
             pre = predicts.argmax()
-            if pre - labels[i] > 0.01:
-                print(fn)
-                print(i)
+            if abs(pre - labels[i]) > 0.01:
+                cntw = cntw + 1
+                # print(fn)
+                # print(i)
                 img = np.transpose(data[i], (1, 2, 0))
                 img_name = '/home/bylu/img/' + info[i][0:-4] + '_miscl_from_' + str(int(labels[i])) + '_to_' + str(pre) + '.jpg'
                 print(img_name)
                 cv2.imwrite(img_name, img)
+print('accuracy = %5.3f',float(cnt-cntw)/float(cnt))
 print('end')
 
 

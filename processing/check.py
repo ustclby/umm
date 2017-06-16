@@ -25,7 +25,8 @@ def check_hist(folder):
 
     attr = new_label.shape[1]
     for i in range(attr):
-        train_hist = np.histogram(new_label[:,i], bins=range(100))
+        print(np.min(new_label[:,i]),np.max(new_label[:,i]))
+        train_hist = np.histogram(new_label[:,i], bins=range(130))
         train_hist = list(train_hist)
         train_hist1 = list(train_hist[0])
         with open('hist.txt', 'a') as in_files:
