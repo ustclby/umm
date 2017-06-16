@@ -5,19 +5,19 @@ import h5py
 import caffe
 import cv2
 
-# x = np.load('/home/bylu/resnet_map/res_mean.npy', mmap_mode='r')
+# x = np.load('/home/umm/resnet_map/res_mean.npy', mmap_mode='r')
 # rgb_mean = x[0, [2,1,0], :]
 # batch_size = 16
 root = '/opt/caffe/'
-deploy = '/home/bylu/resnet_map/snap_20_deploy.prototxt'
-caffe_model= '/home/bylu/resnet_map/snap_iter_15000.caffemodel'
+deploy = '/home/umm/resnet_map/snap_20_deploy.prototxt'
+caffe_model= '/home/umm/resnet_map/snap_iter_15000.caffemodel'
 
 caffe.set_mode_gpu()
 net = caffe.Net(deploy, caffe_model, caffe.TEST)   # load model
 # net.blobs['data'].reshape(batch_size, 3,data.shape[2],data.shape[3])
 
-WD = r'/home/bylu/Test_h5/'
-##WD = r'/Users/bylu/Downloads/'
+WD = r'/home/umm/Test_h5/'
+##WD = r'/Users/umm/Downloads/'
 file_names = glob.glob(os.path.join(WD, '*.h5'))
 cnt = 0
 cntw = 0
@@ -41,7 +41,7 @@ for fn in file_names:
                 print(fn)
                 print(i)
                 img = np.transpose(data[i], (1, 2, 0))
-                img_name = '/home/bylu/img/' + info[i][0:-4] + '_miscl_from_' + str(int(labels[i])) + '_to_' + str(pre) + '.jpg'
+                img_name = '/home/umm/img/' + info[i][0:-4] + '_miscl_from_' + str(int(labels[i])) + '_to_' + str(pre) + '.jpg'
                 print(img_name)
                 cv2.imwrite(img_name, img)
 

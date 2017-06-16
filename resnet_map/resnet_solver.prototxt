@@ -1,5 +1,5 @@
-# net: "/home/bylu/resnet_map/new_resnet_50_train_test.prototxt"
-net: "/home/bylu/resnet_map/usa_multitask_resnet_train_test.prototxt"
+# net: "/home/umm/resnet_map/new_resnet_50_train_test.prototxt"
+net: "/home/umm/resnet_map/usa_multitask_resnet_train_test.prototxt"
 test_iter: 4000
 test_interval: 2000
 test_initialization: false
@@ -14,5 +14,5 @@ max_iter: 250000
 momentum: 0.9
 weight_decay: 0.0005	
 snapshot: 10000
-snapshot_prefix: "/home/bylu/resnet_map/snap"
+snapshot_prefix: "/home/umm/resnet_map/snap"
 solver_mode: GPU

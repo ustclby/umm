@@ -3,11 +3,11 @@ import os
 import numpy as np
 import h5py
 
-x = np.load('/home/bylu/resnet_map/res_mean.npy', mmap_mode='r')
+x = np.load('/home/umm/resnet_map/res_mean.npy', mmap_mode='r')
 rgb_mean = x[0, [2,1,0], :]
 
 
-WD = r'/home/bylu/Train_h5/'
+WD = r'/home/umm/Train_h5/'
 file_names = glob.glob(os.path.join(WD, '*.h5'))
 for fn in file_names:
     with h5py.File(fn, 'r') as h5_file:
@@ -24,7 +24,7 @@ for fn in file_names:
         f.create_dataset('label', data=labels, compression="gzip")
 
 
-WD = r'/home/bylu/Test_h5/'
+WD = r'/home/umm/Test_h5/'
 file_names = glob.glob(os.path.join(WD, '*.h5'))
 for fn in file_names:
     with h5py.File(fn, 'r') as h5_file:

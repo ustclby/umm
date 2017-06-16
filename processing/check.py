@@ -38,13 +38,13 @@ def check_hist(folder):
 def main():
     with open('hist.txt', 'w') as in_files:
         pass
-    train_folder = '/home/bylu/Train_h5/'
+    train_folder = '/home/umm/Train_h5/'
     check_hist(train_folder)
 
     with open('hist.txt', 'a') as in_files:
         in_files.write('\n\n\n')
 
-    test_folder = '/home/bylu/Test_h5/'
+    test_folder = '/home/umm/Test_h5/'
     check_hist(test_folder)
 
     
