@@ -2826,8 +2826,8 @@ layer {
 
 layer {
     bottom: "pool5"
-    top: "fc8"
-    name: "fc8"
+    top: "fc9"
+    name: "fc9"
     type: "InnerProduct"
     param {
         lr_mult: 1
