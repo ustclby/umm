@@ -2353,8 +2353,8 @@ layer {
 ## kind 1
 layer {
         bottom: "pool5"
-        top: "fc1"
-        name: "fc1"
+        top: "fc14"
+        name: "fc14"
         type: "InnerProduct"
         inner_product_param {
                 num_output: 16
@@ -2362,9 +2362,9 @@ layer {
 }
 
 layer {
-        bottom: "fc1"
-        top: "RoadClass"
-        name: "RoadClass"
+        bottom: "fc14"
+        top: "fc14"
+        name: "roadClass"
         type: "Softmax"
 }
 
@@ -2372,18 +2372,18 @@ layer {
 
 layer {
         bottom: "pool5"
-        top: "fc2"
-        name: "fc2"
+        top: "fc9"
+        name: "fc9"
         type: "InnerProduct"
         inner_product_param {
-                num_output: 7
+                num_output: 11
         }
 }
 
 layer {
-        bottom: "fc2"
-        top: "RoadClass"
-        name: "LaneCnt"
+        bottom: "fc9"
+        top: "fc9"
+        name: "laneCount"
         type: "Softmax"
 }
 
