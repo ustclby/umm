@@ -11,7 +11,7 @@ layer {
     phase: TRAIN
   }
   hdfshdf5_data_param {
-    source: "/Sparkie/peter/Learn_UMM_new/224/riverwalk_burlington_new_label_0714/Train_h5"
+    source: "/Sparkie/peter/Learn_UMM_new/224/RiverWalk_0613_fix/Train_h5"
     batch_size: 24
     shuffle: true
     hdfs_config_dir: "/etc/hadoop"
@@ -27,7 +27,7 @@ layer {
     phase: TEST
   }
   hdfshdf5_data_param {
-    source: "/Sparkie/peter/Learn_UMM/224/IL_Springfield_new_labels_0714/Train_h5"
+    source: "/Sparkie/peter/Learn_UMM_new/224/RiverWalk_0613_fix/Test_h5"
     batch_size: 7
     shuffle: true
     hdfs_config_dir: "/etc/hadoop"
@@ -57,8 +57,6 @@ layer {
   top: "label_17"
   top: "label_18"
   top: "label_19"
-  top: "label_20"
-  top: "label_21"
   slice_param {
     axis: 1
     slice_point: 1
@@ -79,8 +77,6 @@ layer {
     slice_point: 16
     slice_point: 17
     slice_point: 18
-    slice_point: 19
-    slice_point: 20
   }
 }
 
@@ -2827,11 +2823,55 @@ layer {
 
 
 ### for kind 9
+
 layer {
-  name: "silence"
-  type: "Silence"
-  bottom: "label_9"
-  phase: TRAIN
+    bottom: "pool5"
+    top: "fc9"
+    name: "fc9"
+    type: "InnerProduct"
+    param {
+        lr_mult: 1
+        decay_mult: 1
+    }
+    param {
+        lr_mult: 2
+        decay_mult: 0
+    }
+    inner_product_param {
+        num_output: 11
+        weight_filler {
+            type: "msra"
+        }
+        bias_filler {
+            type: "constant"
+            value: 0
+        }
+    }
+}
+
+layer {
+    bottom: "fc9"
+    bottom: "label_9"
+    top: "loss_laneCnt"
+    name: "loss_laneCnt"
+    type: "SoftmaxWithLoss"
+    loss_param{ 
+        ignore_label: 0 
+    }
+}
+
+layer {
+    name: "accuracy_laneCnt"
+    type: "Accuracy"
+    bottom: "fc9"
+    bottom: "label_9"
+    top: "accuracy_laneCnt"
+    accuracy_param {
+        ignore_label: 0 
+    }
+    include {
+      phase: TEST
+    }
 }
 
 
@@ -2867,12 +2907,57 @@ layer {
 }
 
 ### for kind 14
+
 layer {
-  name: "silence"
-  type: "Silence"
-  bottom: "label_14"
-  phase: TRAIN
+    bottom: "pool5"
+    top: "fc14"
+    name: "fc14"
+    type: "InnerProduct"
+    param {
+        lr_mult: 1
+        decay_mult: 1
+    }
+    param {
+        lr_mult: 2
+        decay_mult: 0
+    }
+    inner_product_param {
+        num_output: 16
+        weight_filler {
+            type: "msra"
+        }
+        bias_filler {
+            type: "constant"
+            value: 0
+        }
+    }
 }
+
+layer {
+    bottom: "fc14"
+    bottom: "label_14"
+    top: "loss_roadClass"
+    name: "loss_roadClass"
+    type: "SoftmaxWithLoss"
+    loss_param{ 
+        ignore_label: 0 
+    }
+}
+
+layer {
+    name: "accuracy_roadClass"
+    type: "Accuracy"
+    bottom: "fc14"
+    bottom: "label_14"
+    top: "accuracy_roadClass"
+    accuracy_param{
+        ignore_label: 0 
+    }
+    include {
+      phase: TEST
+    }
+}
+
 
 ### for kind 15 
 layer {
@@ -2908,109 +2993,4 @@ layer {
   type: "Silence"
   bottom: "label_19"
   phase: TRAIN
-}
-### for kind 20
-
-layer {
-    bottom: "pool5"
-    top: "fc20"
-    name: "fc20"
-    type: "InnerProduct"
-    param {
-        lr_mult: 1
-        decay_mult: 1
-    }
-    param {
-        lr_mult: 2
-        decay_mult: 0
-    }
-    inner_product_param {
-        num_output: 14
-        weight_filler {
-            type: "msra"
-        }
-        bias_filler {
-            type: "constant"
-            value: 0
-        }
-    }
-}
-
-layer {
-    bottom: "fc20"
-    bottom: "label_20"
-    top: "loss_laneCnt"
-    name: "loss_laneCnt"
-    type: "SoftmaxWithLoss"
-    loss_param{
-        ignore_label: 0
-    }
-}
-
-layer {
-    name: "accuracy_laneCount"
-    type: "Accuracy"
-    bottom: "fc20"
-    bottom: "label_20"
-    top: "accuracy_laneCount"
-    accuracy_param {
-        #has_ignore_label: true
-        ignore_label: 0
-    }
-    include {
-      phase: TEST
-    }
-}
-
-### for kind 21
-
-layer {
-    bottom: "pool5"
-    top: "fc21"
-    name: "fc21"
-    type: "InnerProduct"
-    param {
-        lr_mult: 1
-        decay_mult: 1
-    }
-    param {
-        lr_mult: 2
-        decay_mult: 0
-    }
-    inner_product_param {
-        num_output: 15
-        weight_filler {
-            type: "msra"
-        }
-        bias_filler {
-            type: "constant"
-            value: 0
-        }
-    }
-}
-
-layer {
-    bottom: "fc21"
-    bottom: "label_21"
-    top: "loss_roadClass"
-    name: "loss_roadClass"
-    type: "SoftmaxWithLoss"
-    loss_param{
-        ignore_label: 0
-    }
-}
-
-layer {
-    name: "accuracy_roadClass"
-    type: "Accuracy"
-    bottom: "fc21"
-    bottom: "label_21"
-    top: "accuracy_roadClass"
-    accuracy_param{
-        #has_ignore_label: true
-        ignore_label: 0
-    }
-    include {
-      phase: TEST
-    }
 }

@@ -20,10 +20,10 @@ net = caffe.Net(deploy, caffe_model, caffe.TEST)   # load model
 
 WD = r'/home/umm/Test_h5/'
 
-if not os.path.exists(/home/umm/img_lanCount):
-    os.makedirs(/home/umm/img_lanCount)
-if not os.path.exists(/home/umm/img_rodaClass/):
-    os.makedirs(/home/umm/img_rodaClass/)
+if not os.path.exists('/home/umm/img_laneCount'):
+    os.makedirs('/home/umm/img_laneCount')
+if not os.path.exists('/home/umm/img_roadClass/'):
+    os.makedirs('/home/umm/img_roadClass/')
 ##WD = r'/Users/umm/Downloads/'
 file_names = glob.glob(os.path.join(WD, '*.h5'))
 cnt = 0
@@ -59,7 +59,7 @@ for fn in file_names:
                 # print(fn)
                 # print(i)
                 img_r = np.transpose(data[i], (1, 2, 0))
-                img_name_r = '/home/umm/img_rodaClass/' + info[i][0:-4] + '_miscl_from_' + str(int(labels_roadClass[i])) + '_to_' + str(pre_r) + '.jpg'
+                img_name_r = '/home/umm/img_roadClass/' + info[i][0:-4] + '_miscl_from_' + str(int(labels_roadClass[i])) + '_to_' + str(pre_r) + '.jpg'
                 print(img_name_r)
                 cv2.imwrite(img_name_r, img_r)
             if labels_laneCount[i] == 0:
@@ -71,7 +71,7 @@ for fn in file_names:
                 # print(fn)
                 # print(i)
                     img_l = np.transpose(data[i], (1, 2, 0))
-                    img_name_l = '/home/umm/img_lanCount/' + info[i][0:-4] + '_miscl_from_' + str(int(labels_laneCount[i])) + '_to_' + str(pre_l) + '.jpg'
+                    img_name_l = '/home/umm/img_laneCount/' + info[i][0:-4] + '_miscl_from_' + str(int(labels_laneCount[i])) + '_to_' + str(pre_l) + '.jpg'
                     print(img_name_l)
                     cv2.imwrite(img_name_l, img_l)
 
