@@ -93,9 +93,7 @@ layer {
       		  type: "msra"
     		}
     		bias_filler {
-      		  type: "constant"
-      		  value: 0.2
-    	       }
+      		  type: "constant"    	       }
 	}
 }
 
@@ -154,7 +152,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -195,7 +193,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -243,7 +241,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -291,7 +289,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -347,7 +345,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -395,7 +393,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -443,7 +441,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -499,7 +497,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -547,7 +545,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -595,7 +593,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -651,7 +649,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -692,7 +690,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -740,7 +738,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -788,7 +786,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -844,7 +842,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -892,7 +890,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -940,7 +938,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -996,7 +994,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1044,7 +1042,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1092,7 +1090,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1148,7 +1146,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1196,7 +1194,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1244,7 +1242,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1300,7 +1298,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1341,7 +1339,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1389,7 +1387,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1437,7 +1435,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1493,7 +1491,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1541,7 +1539,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1589,7 +1587,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1645,7 +1643,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1693,7 +1691,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1741,7 +1739,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1797,7 +1795,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1845,7 +1843,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1893,7 +1891,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1949,7 +1947,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -1997,7 +1995,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2045,7 +2043,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2101,7 +2099,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2149,7 +2147,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2197,7 +2195,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2253,7 +2251,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2294,7 +2292,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2342,7 +2340,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2390,7 +2388,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2446,7 +2444,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2494,7 +2492,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2542,7 +2540,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2598,7 +2596,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2646,7 +2644,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
@@ -2694,7 +2692,7 @@ layer {
     		}
     		bias_filler {
       		  type: "constant"
-      		  value: 0.2
+      		  
     	       }
 	}
 }
