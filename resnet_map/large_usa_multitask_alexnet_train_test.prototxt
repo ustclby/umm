@@ -1,0 +1,722 @@
+name: "multi_task_usa"
+
+### data and labels
+
+layer {
+  name: "map_test"
+  type: "HDFSHDF5Data"
+  top: "data"
+  top: "label"
+  include {
+    phase: TRAIN
+  }
+  hdfshdf5_data_param {
+    source: "/Sparkie/peter/Learn_UMM_new/224/four_cities/Train_h5"
+    batch_size: 24
+    shuffle: true
+    hdfs_config_dir: "/etc/hadoop"
+  }
+}
+
+layer {
+  name: "map_test"
+  type: "HDFSHDF5Data"
+  top: "data"
+  top: "label"
+  include {
+    phase: TEST
+  }
+  hdfshdf5_data_param {
+    source: "/Sparkie/peter/Learn_UMM_new/224/IL_Springfield_new_labels/Test_h5"
+    batch_size: 7
+    shuffle: true
+    hdfs_config_dir: "/etc/hadoop"
+  }
+}
+
+layer {
+  name: "slicers"
+  type: "Slice"
+  bottom: "label"
+  top: "label_1"
+  top: "label_2"
+  top: "label_3"
+  top: "label_4"
+  top: "label_5"
+  top: "label_6"
+  top: "label_7"
+  top: "label_8"
+  top: "label_9"
+  top: "label_10"
+  top: "label_11"
+  top: "label_12"
+  top: "label_13"
+  top: "label_14"
+  top: "label_15"
+  top: "label_16"
+  top: "label_17"
+  top: "label_18"
+  top: "label_19"
+  slice_param {
+    axis: 1
+    slice_point: 1
+    slice_point: 2
+    slice_point: 3
+    slice_point: 4
+    slice_point: 5
+    slice_point: 6
+    slice_point: 7
+    slice_point: 8
+    slice_point: 9
+    slice_point: 10
+    slice_point: 11
+    slice_point: 12
+    slice_point: 13
+    slice_point: 14
+    slice_point: 15
+    slice_point: 16
+    slice_point: 17
+    slice_point: 18
+  }
+}
+
+
+### for all
+
+layer {
+  name: "conv0"
+  type: "Convolution"
+  bottom: "data"
+  top: "conv0"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 96
+    kernel_size: 11
+    stride: 4
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layer {
+  name: "relu0"
+  type: "ReLU"
+  bottom: "conv0"
+  top: "conv0"
+}
+layer {
+  name: "norm0"
+  type: "LRN"
+  bottom: "conv0"
+  top: "norm0"
+  lrn_param {
+    local_size: 5
+    alpha: 0.0001
+    beta: 0.75
+  }
+}
+layer {
+  name: "pool0"
+  type: "Pooling"
+  bottom: "norm0"
+  top: "pool0"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layer {
+  name: "conv1"
+  type: "Convolution"
+  bottom: "pool0"
+  top: "conv1"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 96
+    kernel_size: 11
+    stride: 4
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layer {
+  name: "relu1"
+  type: "ReLU"
+  bottom: "conv1"
+  top: "conv1"
+}
+layer {
+  name: "norm1"
+  type: "LRN"
+  bottom: "conv1"
+  top: "norm1"
+  lrn_param {
+    local_size: 5
+    alpha: 0.0001
+    beta: 0.75
+  }
+}
+layer {
+  name: "pool1"
+  type: "Pooling"
+  bottom: "norm1"
+  top: "pool1"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layer {
+  name: "conv2"
+  type: "Convolution"
+  bottom: "pool1"
+  top: "conv2"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 256
+    pad: 2
+    kernel_size: 5
+    group: 2
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+  }
+}
+layer {
+  name: "relu2"
+  type: "ReLU"
+  bottom: "conv2"
+  top: "conv2"
+}
+layer {
+  name: "norm2"
+  type: "LRN"
+  bottom: "conv2"
+  top: "norm2"
+  lrn_param {
+    local_size: 5
+    alpha: 0.0001
+    beta: 0.75
+  }
+}
+layer {
+  name: "pool2"
+  type: "Pooling"
+  bottom: "norm2"
+  top: "pool2"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layer {
+  name: "conv3"
+  type: "Convolution"
+  bottom: "pool2"
+  top: "conv3"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 384
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layer {
+  name: "relu3"
+  type: "ReLU"
+  bottom: "conv3"
+  top: "conv3"
+}
+layer {
+  name: "conv4"
+  type: "Convolution"
+  bottom: "conv3"
+  top: "conv4"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 384
+    pad: 1
+    kernel_size: 3
+    group: 2
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+  }
+}
+layer {
+  name: "relu4"
+  type: "ReLU"
+  bottom: "conv4"
+  top: "conv4"
+}
+layer {
+  name: "conv5"
+  type: "Convolution"
+  bottom: "conv4"
+  top: "conv5"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+    group: 2
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+  }
+}
+layer {
+  name: "relu5"
+  type: "ReLU"
+  bottom: "conv5"
+  top: "conv5"
+}
+layer {
+  name: "pool5"
+  type: "Pooling"
+  bottom: "conv5"
+  top: "pool5"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layer {
+  name: "fc0"
+  type: "InnerProduct"
+  bottom: "pool5"
+  top: "fc0"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 4096
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+  }
+}
+layer {
+  name: "relu6"
+  type: "ReLU"
+  bottom: "fc0"
+  top: "fc0"
+}
+layer {
+  name: "drop6"
+  type: "Dropout"
+  bottom: "fc0"
+  top: "fc0"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+
+
+#################### begin fc for different tasks
+
+
+### for kind 1
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_1"
+  phase: TRAIN
+}
+
+### for kind 2 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_2"
+  phase: TRAIN
+}
+
+### for kind 3
+
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_3"
+  phase: TRAIN
+}
+
+### for kind 4
+
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_4"
+  phase: TRAIN
+}
+
+### for kind 5
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_5"
+  phase: TRAIN
+}
+### for kind 6 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_6"
+  phase: TRAIN
+}
+
+
+### for kind 7 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_7"
+  phase: TRAIN
+}
+
+
+
+### for kind 8 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_8"
+  phase: TRAIN
+}
+
+
+
+
+### for kind 9
+
+layer {
+  name: "fc91"
+  type: "InnerProduct"
+  bottom: "fc0"
+  top: "fc91"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 4096
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+  }
+}
+layer {
+  name: "relu7"
+  type: "ReLU"
+  bottom: "fc91"
+  top: "fc91"
+}
+layer {
+  name: "drop7"
+  type: "Dropout"
+  bottom: "fc91"
+  top: "fc91"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layer {
+  name: "fc92"
+  type: "InnerProduct"
+  bottom: "fc91"
+  top: "fc92"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 11
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+
+layer {
+    bottom: "fc92"
+    bottom: "label_9"
+    top: "loss_laneCnt"
+    name: "loss_laneCnt"
+    type: "SoftmaxWithLoss"
+    loss_param{ 
+        ignore_label: 0 
+    }
+}
+
+layer {
+    name: "accuracy_laneCnt"
+    type: "Accuracy"
+    bottom: "fc92"
+    bottom: "label_9"
+    top: "accuracy_laneCnt"
+    accuracy_param {
+        ignore_label: 0 
+    }
+    include {
+      phase: TEST
+    }
+}
+
+### for kind 10 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_10"
+  phase: TRAIN
+}
+### for kind 11 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_11"
+  phase: TRAIN
+}
+
+### for kind 12 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_12"
+  phase: TRAIN
+}
+
+### for kind 13 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_13"
+  phase: TRAIN
+}
+
+### for kind 14
+
+layer {
+  name: "fc141"
+  type: "InnerProduct"
+  bottom: "fc0"
+  top: "fc141"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 4096
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+  }
+}
+layer {
+  name: "relu7"
+  type: "ReLU"
+  bottom: "fc141"
+  top: "fc141"
+}
+layer {
+  name: "drop7"
+  type: "Dropout"
+  bottom: "fc141"
+  top: "fc141"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layer {
+  name: "fc142"
+  type: "InnerProduct"
+  bottom: "fc141"
+  top: "fc142"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 15
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+
+layer {
+    bottom: "fc142"
+    bottom: "label_14"
+    top: "loss_roadClass"
+    name: "loss_roadClass"
+    type: "SoftmaxWithLoss"
+    loss_param{ 
+        ignore_label: 0 
+    }
+}
+
+layer {
+    name: "accuracy_roadClass"
+    type: "Accuracy"
+    bottom: "fc142"
+    bottom: "label_14"
+    top: "accuracy_roadClass"
+    accuracy_param{
+        ignore_label: 0 
+    }
+    include {
+      phase: TEST
+    }
+}
+
+#############################################
+
+### for kind 15 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_15"
+  phase: TRAIN
+}
+### for kind 16 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_16"
+  phase: TRAIN
+}
+### for kind 17 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_17"
+  phase: TRAIN
+}
+### for kind 18 
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_18"
+  phase: TRAIN
+}
+### for kind 19
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "label_19"
+  phase: TRAIN
+}
