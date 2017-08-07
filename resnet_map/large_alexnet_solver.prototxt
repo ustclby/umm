@@ -4,8 +4,8 @@ test_interval: 4000
 base_lr: 0.1
 lr_policy: "multistep"
 stepvalue: 50000
-stepvalue: 110000
-stepvalue: 180000
+stepvalue: 120000
+stepvalue: 240000
 gamma: 0.1
 display: 10
 max_iter: 800000
